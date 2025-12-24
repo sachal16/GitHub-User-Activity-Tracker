@@ -12,7 +12,7 @@ public class Main {
             String username=args[0];
             username=username.trim();
             if(username.length()==0){
-                System.out.println("Invalid username");
+                System.out.println("Invalid username; Usage: github-activity <username>");
             }else{
                 System.out.println(username);
             }
