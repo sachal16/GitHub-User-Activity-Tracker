@@ -19,4 +19,8 @@ public class ApiResponse {
     public void setBody(String body) {
         Body = body;
     }
+    public ApiResponse(int statusCode, String body) {
+        StatusCode = statusCode;
+        Body = body;
+    }
 }
