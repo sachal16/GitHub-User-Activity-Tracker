@@ -15,8 +15,15 @@ public class Main {
                 System.out.println("Invalid username; Usage: github-activity <username>");
             }else{
                 System.out.println(username);
+                GitHubClient clientTest = new GitHubClient();
+                ApiResponse response = clientTest.wiring("sachal16");
+                System.out.println(response.getStatusCode());
+                System.out.println(response.getBody());
             }
         }
+
+
+
 
     }
 }
