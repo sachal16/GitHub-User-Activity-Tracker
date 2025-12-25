@@ -16,7 +16,7 @@ public class Main {
             }else{
                 System.out.println(username);
                 GitHubClient clientTest = new GitHubClient();
-                ApiResponse response = clientTest.wiring("sachal16");
+                ApiResponse response = clientTest.wiring(username);
                 System.out.println(response.getStatusCode());
                 System.out.println(response.getBody());
             }
