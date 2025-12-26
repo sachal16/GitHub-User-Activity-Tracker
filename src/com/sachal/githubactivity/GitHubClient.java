@@ -7,7 +7,6 @@ import java.net.URI;
 public class GitHubClient {
 
     public ApiResponse wiring(String username){
-        ApiResponse api = new ApiResponse(0,"placeholder");
         String url = "https://api.github.com/users/" + username +"/events";
         System.out.println(url);
 
@@ -21,7 +20,11 @@ public class GitHubClient {
                 .header("Accept", "application/vnd.github+json")
                 .header("User-Agent", "github-useractivity")
                 .build();
-
+        try{
+            client.send(request,)
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         return api;
     }
