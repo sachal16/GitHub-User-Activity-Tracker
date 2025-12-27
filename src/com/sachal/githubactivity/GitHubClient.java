@@ -21,7 +21,7 @@ public class GitHubClient {
                 .header("User-Agent", "github-useractivity")
                 .build();
         try{
-            client.send(request,)
+            client.send(request,"")
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
