@@ -24,7 +24,10 @@ public class GitHubClient {
         try{
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
 
-            return;
+            int statusCode = response.statusCode();
+            String body = response.body();
+            return new ApiResponse(statusCode,body);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
