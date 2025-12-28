@@ -3,6 +3,7 @@ package com.sachal.githubactivity;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.URI;
+import java.net.http.HttpResponse;
 
 public class GitHubClient {
 
@@ -21,12 +22,14 @@ public class GitHubClient {
                 .header("User-Agent", "github-useractivity")
                 .build();
         try{
-            client.send(request,"")
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+
+            return;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        return api;
+        return ;
     }
 
 }
