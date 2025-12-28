@@ -29,10 +29,9 @@ public class GitHubClient {
             return new ApiResponse(statusCode,body);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return new ApiResponse(-1,e.getMessage());
         }
 
-        return ;
     }
 
 }
