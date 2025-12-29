@@ -13,6 +13,13 @@ public class GitHubClient {
 
         //first string = h-name
         //second string = h-value
+        /* NOTE
+        StatusCODE:
+        1xx: info error
+        2xx: success
+        3xx: redirection
+        4xx: client error
+         */
         HttpClient client = HttpClient.newHttpClient();
         URI uri = URI.create(url);
         HttpRequest request = HttpRequest.newBuilder()

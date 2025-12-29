@@ -19,6 +19,17 @@ public class Main {
                 GitHubClient clientTest = new GitHubClient();
                 ApiResponse response = clientTest.wiring(username);
 
+                if(response.getStatusCode() != 200){
+                    System.out.println("Request Failed" + response.getStatusCode());
+                    System.out.println(response.getBody());
+                    return;
+                }
+                Gson gson = new Gson();
+                Event[] events = gson.fromJson(response.getBody(), Event[].class);
+                for (Event event : events){
+
+                }
+
 
             }
         }

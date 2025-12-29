@@ -2,13 +2,13 @@ package com.sachal.githubactivity;
 
 public class Event {
     public String type;
-    public Repo repoistory;
-    public UserUploads uploads;
+    public Repo repo;
+    public Payload payload;
 
     public static class Repo{
         public String name;
     }
-    public static class UserUploads{
-        public Integer size;
+    public static class Payload{
+        public Integer size; // possiblity of null
     }
 }
