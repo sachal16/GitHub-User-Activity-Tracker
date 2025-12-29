@@ -1,4 +1,5 @@
 package com.sachal.githubactivity;
+import com.google.gson.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,8 +18,8 @@ public class Main {
                 System.out.println(username);
                 GitHubClient clientTest = new GitHubClient();
                 ApiResponse response = clientTest.wiring(username);
-                System.out.println(response.getStatusCode());
-                System.out.println(response.getBody());
+
+
             }
         }
 
