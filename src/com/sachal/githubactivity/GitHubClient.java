@@ -1,40 +1,44 @@
 package com.sachal.githubactivity;
 
-import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.URI;
 import java.net.http.HttpResponse;
 
 public class GitHubClient {
 
-    private final String baseUrl;
+    public ApiResponse wiring(String username){
+        String url = "https://api.github.com/users/" + username +"/events";
+        System.out.println(url);
 
-    public GitHubClient(String baseUrl) {
-        if (baseUrl == null || baseUrl.isEmpty()) {
-            this.baseUrl = "https://api.github.com/";
-        } else {
-            this.baseUrl = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
-        }
-    }
-
-    public GitHubClient() {
-        this("https://api.github.com");
-    }
-
-    public ApiResponse fetchEvents(String username) {
-        String url = baseUrl + "users/" + username + "/events";
+        //first string = h-name
+        //second string = h-value
+        /* NOTE
+        StatusCODE:
+        1xx: info error
+        2xx: success
+        3xx: redirection
+        4xx: client error
+         */
         HttpClient client = HttpClient.newHttpClient();
+        URI uri = URI.create(url);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
+                .uri(uri)
                 .GET()
                 .header("Accept", "application/vnd.github+json")
                 .header("User-Agent", "github-useractivity")
                 .build();
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return new ApiResponse(response.statusCode(), response.body());
+        try{
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+
+            int statusCode = response.statusCode();
+            String body = response.body();
+            return new ApiResponse(statusCode,body);
+
         } catch (Exception e) {
-            return new ApiResponse(-1, e.getMessage());
+            return new ApiResponse(-1,e.getMessage());
         }
+
     }
+
 }

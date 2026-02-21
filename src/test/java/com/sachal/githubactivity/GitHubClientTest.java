@@ -7,40 +7,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class GitHubClientTest {
 
     @Test
-    void defaultConstructor() {
+    void wiringReturnsResponse() {
         GitHubClient client = new GitHubClient();
-        assertNotNull(client);
-    }
-
-    @Test
-    void customBaseUrlNoTrailingSlash() {
-        GitHubClient client = new GitHubClient("https://api.example.com");
-        assertNotNull(client);
-        // Invalid port so connection fails fast; we only check we get an ApiResponse
-        ApiResponse response = client.fetchEvents("bar");
+        ApiResponse response = client.wiring("octocat");
         assertNotNull(response);
-        assertTrue(response.getStatusCode() == -1 || response.getStatusCode() >= 0);
+        assertTrue(response.getStatusCode() == 200 || response.getStatusCode() == 404 || response.getStatusCode() == -1);
     }
 
     @Test
-    void customBaseUrlTrailingSlash() {
-        GitHubClient client = new GitHubClient("https://api.example.com/");
-        assertNotNull(client);
-        ApiResponse response = client.fetchEvents("foo");
+    void wiringWithInvalidUser() {
+        GitHubClient client = new GitHubClient();
+        ApiResponse response = client.wiring("this-user-probably-does-not-exist-12345");
         assertNotNull(response);
-    }
-
-    @Test
-    void nullBaseUrlFallsBackToDefault() {
-        GitHubClient client = new GitHubClient(null);
-        assertNotNull(client);
-        ApiResponse response = client.fetchEvents("octocat");
-        assertNotNull(response);
-    }
-
-    @Test
-    void emptyBaseUrlFallsBackToDefault() {
-        GitHubClient client = new GitHubClient("");
-        assertNotNull(client);
+        assertNotNull(response.getBody());
     }
 }
