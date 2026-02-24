@@ -32,7 +32,7 @@ Pushed: 2 of octocat/Hello-World
 Pushed: 1 of octocat/linguist
 ```
 
-## Tests
+## Test
 
 ```bash
 mvn test
