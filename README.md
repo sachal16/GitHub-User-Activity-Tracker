@@ -7,7 +7,7 @@ A small CLI that fetches a GitHub user’s recent events and prints their **push
 - **Java 25** (or whatever version matches `maven.compiler.release` in `pom.xml`)
 - **Maven**
 
-## Build & run
+## Build & run 
 
 ```bash
 mvn compile
